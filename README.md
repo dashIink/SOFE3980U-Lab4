@@ -1,4 +1,4 @@
-#If this builds I would be so happy
+#Doesn't seem like its erroring now
 # Milestone 4: Continuous Integration and Continuous Delivery (Jenkins) 
 ## Objective   
 1. Git Familiar with Jenkins.
