@@ -32,13 +32,13 @@ public class BinaryAPIControllerTest {
     @Autowired
     private MockMvc mvc;
 
-   
     @Test
     public void add() throws Exception {
         this.mvc.perform(get("/add").param("operand1","111").param("operand2","1010"))//.andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().string("10001"));
     }
+    
 	@Test
     public void add2() throws Exception {
         this.mvc.perform(get("/add_json").param("operand1","111").param("operand2","1010"))//.andDo(print())
@@ -48,4 +48,33 @@ public class BinaryAPIControllerTest {
 			.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(10001))
 			.andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
     }
+
+    @Test
+    public void add3() throws Exception {
+        this.mvc.perform(get("/add").param("operand1","101").param("operand2","101"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string("1010"));
+    }
+
+    @Test
+    public void multiply() throws Exception {
+        this.mvc.perform(get("/mult").param("operand1","10").param("operand2","101"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string("1010"));
+    }
+
+    @Test
+    public void or() throws Exception {
+        this.mvc.perform(get("/OR").param("operand1","101").param("operand2","111"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("111"));
+    }
+
+    @Test
+    public void and() throws Exception {
+        this.mvc.perform(get("/AND").param("operand1","101").param("operand2","111"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("101"));
+    }
+
 }

@@ -27,4 +27,60 @@ public class BinaryAPIController {
 		// http://localhost:8080/add?operand1=111&operand2=1010
 	}
 
+		@GetMapping("/OR")
+	public String ORString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.OR(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/OR_json")
+	public BinaryAPIResult ORJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"OR",number2,Binary.OR(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+
+			@GetMapping("/AND")
+	public String ANDString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.AND(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/AND_json")
+	public BinaryAPIResult ANDJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"AND",number2,Binary.AND(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+
+	
+		@GetMapping("/mult")
+	public String multString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.mult(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/mult_json")
+	public BinaryAPIResult multJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"mult",number2,Binary.mult(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+
+
 }
