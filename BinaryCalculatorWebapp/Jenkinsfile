@@ -13,6 +13,8 @@ pipeline {
     stage ('test') {
       steps {
         sh 'mvn clean test -f ./BinaryCalculatorWebapp/pom.xml'
+        sh 'docker build -t gcr.io/<Project-ID>/binarycalculator .'
+        sh 'docker push gcr.io/<Project-ID>/binarycalculator'
       }
     }
     stage ('build') {
@@ -23,8 +25,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         sh 'echo "bye bye"'
-        sh 'docker build -t gcr.io/coral-pipe-354703/binarycalculator .'
-        sh 'docker push gcr.io/coral-pipe-354703/binarycalculator'
+        sh 'kubectl apply -f binary-calculator.yaml'
       }
     }
   }
